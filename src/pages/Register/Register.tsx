@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form'
-import { omit } from 'lodash'
+import omit from 'lodash/omit'
 import { Link, useNavigate } from 'react-router-dom'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation } from '@tanstack/react-query'

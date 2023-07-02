@@ -86,7 +86,7 @@ export default function Profile() {
     queryFn: userApi.getProfile
   })
 
-  const profile = profileData?.data.data
+  const profile = profileData?.data.data as any
   const updateProfileMutation = useMutation(userApi.updateProfile)
   const uploadAvataMutaion = useMutation(userApi.uploadAvatar)
 

@@ -1,6 +1,5 @@
 import type { RegisterOptions, UseFormGetValues } from 'react-hook-form'
 import * as yup from 'yup'
-import { AnyObject } from 'yup/lib/types'
 
 type Rules = { [key in 'email' | 'password' | 'confirm_password']?: RegisterOptions }
 
@@ -58,7 +57,7 @@ export const getRules = (getValues?: UseFormGetValues<any>): Rules => ({
   }
 })
 
-function testPriceMinMax(this: yup.TestContext<AnyObject>) {
+function testPriceMinMax(this: yup.TestContext<yup.AnyObject>) {
   const { price_max, price_min } = this.parent as { price_min: string; price_max: string }
   if (price_min !== '' && price_max !== '') {
     return Number(price_max) >= Number(price_min)
@@ -102,13 +101,28 @@ export const schema = yup.object({
 })
 
 export const userSchema = yup.object({
-  name: yup.string().max(160, 'Độ dài tối đa là 160 ký tự'),
-  phone: yup.string().max(20, 'Độ dài tối đa là 20 ký tự'),
-  address: yup.string().max(160, 'Độ dài tối đa là 160 ký tự'),
-  avatar: yup.string().max(1000, 'Độ dài tối đa là 1000 ký tự'),
-  date_of_birth: yup.date().max(new Date(), 'Hãy chọn một ngày trong quá khứ'),
-  password: schema.fields['password'],
-  new_password: schema.fields['password'],
+  name: yup.string().max(160, 'Độ dài tối đa là 160 ký tự') as yup.StringSchema<string, yup.AnyObject, undefined, ''>,
+  phone: yup.string().max(20, 'Độ dài tối đa là 20 ký tự') as yup.StringSchema<string, yup.AnyObject, undefined, ''>,
+  address: yup.string().max(160, 'Độ dài tối đa là 160 ký tự') as yup.StringSchema<
+    string,
+    yup.AnyObject,
+    undefined,
+    ''
+  >,
+  avatar: yup.string().max(1000, 'Độ dài tối đa là 1000 ký tự') as yup.StringSchema<
+    string,
+    yup.AnyObject,
+    undefined,
+    ''
+  >,
+  date_of_birth: yup.date().max(new Date(), 'Hãy chọn một ngày trong quá khứ') as yup.DateSchema<
+    Date,
+    yup.AnyObject,
+    undefined,
+    ''
+  >,
+  password: schema.fields['password'] as yup.StringSchema<string, yup.AnyObject, undefined, ''>,
+  new_password: schema.fields['password'] as yup.StringSchema<string, yup.AnyObject, undefined, ''>,
   confirm_password: handleConfirmPasswordYup('new_password')
 })
 
