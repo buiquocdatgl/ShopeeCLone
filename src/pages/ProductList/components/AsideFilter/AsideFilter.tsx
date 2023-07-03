@@ -43,7 +43,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
     reset,
     formState: { errors }
   } = useForm<FormData>({
-    defaultValues: {
+    defaultValues: { 
       price_min: '',
       price_max: ''
     },
