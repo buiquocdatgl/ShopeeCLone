@@ -43,7 +43,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
     reset,
     formState: { errors }
   } = useForm<FormData>({
-    defaultValues: { 
+    defaultValues: {
       price_min: '',
       price_max: ''
     },
@@ -70,7 +70,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
       search: createSearchParams(omit(queryConfig, ['price_min', 'price_max', 'rating_filter', 'category'])).toString()
     })
   }
-  console.log(errors)
+
   return (
     <div className='py-4'>
       <Link
